@@ -1,0 +1,4 @@
+<resources>
+    <string name="mandatory_cep">The CEP is mandatory!</string>
+    <string name="invalid_cep">Please inform a valid CEP!</string>
+</resources>
