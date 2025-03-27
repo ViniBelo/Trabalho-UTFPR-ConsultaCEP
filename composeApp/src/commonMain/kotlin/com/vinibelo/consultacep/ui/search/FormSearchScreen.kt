@@ -49,7 +49,7 @@ fun FormSearch(
             value = formSearchState.cep.value,
             visualTransformation = CepVisualTransformation(),
             onValueChange = onCepChanged,
-            label = { Text("Label") }
+            label = { Text("CEP") }
         )
         ElevatedButton(
             modifier = modifier.fillMaxWidth(),
