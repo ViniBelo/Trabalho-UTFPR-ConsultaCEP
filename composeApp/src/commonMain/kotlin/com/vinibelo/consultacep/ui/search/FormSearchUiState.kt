@@ -1,5 +1,6 @@
 package com.vinibelo.consultacep.ui.search
 
+import com.vinibelo.consultacep.data.model.Cep
 import org.jetbrains.compose.resources.StringResource
 
 data class FormSearchField(
@@ -9,6 +10,7 @@ data class FormSearchField(
 
 data class FormSearchState(
     val cep: FormSearchField = FormSearchField(),
+    val endereco: Cep = Cep(),
     val fetchingCep: Boolean = false
 ) {
     val isValid get(): Boolean = cep.errorStringResource == null
