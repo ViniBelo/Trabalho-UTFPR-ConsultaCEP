@@ -22,6 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vinibelo.consultacep.ui.search.visualTransformation.CepVisualTransformation
+import consultacep.composeapp.generated.resources.Res
+import consultacep.composeapp.generated.resources.error_loading_cep
+import org.jetbrains.compose.resources.getString
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,7 +36,7 @@ fun FormSearchScreen(
     LaunchedEffect(snackbarHostState, viewModel.uiState.errorWhileFetching) {
         if (viewModel.uiState.errorWhileFetching) {
             snackbarHostState.showSnackbar(
-                message = "Error fetching CEP."
+                message = getString(Res.string.error_loading_cep)
             )
         }
     }
