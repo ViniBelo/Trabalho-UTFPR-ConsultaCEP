@@ -23,6 +23,7 @@ class FormSearchViewModel(): ViewModel() {
     fun fetchCep() {
         viewModelScope.launch {
             uiState = uiState.copy(
+                errorWhileFetching = false,
                 formSearchState = uiState.formSearchState.copy(
                     endereco = uiState.formSearchState.endereco.copy(
                         cep = "",
@@ -36,6 +37,7 @@ class FormSearchViewModel(): ViewModel() {
             )
             try {
                 val returnedCep: Cep = cepRepository.fetchCep(uiState.formSearchState.cep.value)
+                if (returnedCep.cep.isBlank()) throw Exception("CEP not found")
                 println(returnedCep)
                 uiState = uiState.copy(
                     formSearchState = uiState.formSearchState.copy(
@@ -52,12 +54,10 @@ class FormSearchViewModel(): ViewModel() {
             } catch (ex: Exception) {
                 println("[$tag]: Error fetching CEP $uiState.formSearchState.cep.value")
                 ex.printStackTrace()
-                uiState.copy(
+                uiState = uiState.copy(
+                    errorWhileFetching = true,
                     formSearchState = uiState.formSearchState.copy(
-                        fetchingCep = false,
-                        cep = uiState.formSearchState.cep.copy(
-                            errorStringResource = Res.string.error_loading_cep
-                        )
+                        fetchingCep = false
                     )
                 )
             }
