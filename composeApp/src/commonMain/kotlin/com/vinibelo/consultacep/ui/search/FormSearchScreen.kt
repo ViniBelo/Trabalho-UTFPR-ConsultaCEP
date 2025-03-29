@@ -74,7 +74,7 @@ fun FormSearch(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp, bottom = 16.dp),
-            enabled = !fetchingCep,
+            enabled = formSearchState.cep.value.isNotEmpty() && !fetchingCep && formSearchState.cep.errorStringResource == null,
             onClick = onClick
         ) {
             if (fetchingCep) {
